@@ -46,8 +46,29 @@
 namespace asciiquarium_sharp;
 class Program
 {
+    string version = "1.1";
+   
+
+    
+
     static void Main(string[] args)
     {
+        bool opt_c = false;
+        int new_fish = 1;
+        int new_monster = 1;
+
+        opt_c = getopts(args, 'c');
+
+        if (opt_c) { //'classic; mode
+            new_fish = 0;
+            new_monster = 0;
+	    }
+
+        var random_objects = init_random_objects();
+
+
+
+
         var fish1 = @"
 ______
 `""""-.  `````-----.....__
@@ -68,6 +89,11 @@ ______
 
         Console.WriteLine("Hello, World!");
         Console.WriteLine(fish1);
+    }
+
+    private static bool getopts(string[] args, char v)
+    {
+        throw new NotImplementedException();
     }
 }
 
