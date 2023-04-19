@@ -57,6 +57,11 @@ class Program
         int new_fish = 1;
         int new_monster = 1;
 
+        var start_time = DateTime.Now;
+        bool paused = false;
+
+        Screen screen = new Screen();
+
         opt_c = getopts(args, 'c');
 
         if (opt_c) { //'classic; mode
@@ -66,7 +71,33 @@ class Program
 
         var random_objects = init_random_objects();
 
+        while (true) {
 
+            add_environment(screen);
+            add_castle(screen);
+            add_all_seaweed(screen);
+            add_all_fish(screen);
+            random_object(null,screen);
+            screen.redraw();
+
+            int nexttime = 0;
+
+            while (true) {
+                var input = Console.ReadKey().KeyChar;
+
+                if(input == 'q') {
+                    break;
+		        }
+                else if(input == 'r') {
+                    screen.redraw();
+		        }
+                else if(input == 'p') {
+                    paused = !paused;
+		        }
+
+                //screen.animate() if !paused
+	        }
+	    }
 
 
         var fish1 = @"
