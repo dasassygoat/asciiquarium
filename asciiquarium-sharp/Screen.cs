@@ -43,81 +43,13 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ############################################################################ */
 
-using asciiquarium_sharp.ascii_art;
-
-namespace asciiquarium_sharp;
-class Program
+namespace asciiquarium_sharp
 {
-    string version = "1.1";
-
-    static void Main(string[] args)
+    internal class Screen
     {
-        bool opt_c = false;
-        int new_fish = 1;
-        int new_monster = 1;
-
-        var start_time = DateTime.Now;
-        bool paused = false;
-
-        Screen screen = new Screen();
-        if(args.Any())
-            opt_c = getopts(args, 'c');
-
-        if (opt_c)
-        { //'classic; mode
-            new_fish = 0;
-            new_monster = 0;
-        }
-
-        var random_objects = initRandomObjects();
-
-        while (false)
+        internal void redraw()
         {
-
-            //add_environment(screen);
-            //add_castle(screen);
-            //add_all_seaweed(screen);
-            //add_all_fish(screen);
-            //random_object(null,screen);
-            screen.redraw();
-
-            int nexttime = 0;
-
-            while (true)
-            {
-                var input = Console.ReadKey().KeyChar;
-
-                if (input == 'q')
-                {
-                    break;
-                }
-                else if (input == 'r')
-                {
-                    screen.redraw();
-                }
-                else if (input == 'p')
-                {
-                    paused = !paused;
-                }
-
-                //screen.animate() if !paused
-            }
+            throw new NotImplementedException();
         }
-        Console.WriteLine(FishAscii.FISH1);
-    }
-
-    private static object initRandomObjects()
-    {
-        return "HELLO";
-    }
-
-    private static bool getopts(string[] args, char v)
-    {
-        foreach (var i in args[0])
-        {
-            if (i == v) { return true; }
-        }
-
-        return false;
     }
 }
