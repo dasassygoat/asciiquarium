@@ -43,6 +43,7 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ############################################################################ */
 
+using System.Drawing;
 using asciiquarium_sharp.ascii_art;
 
 namespace asciiquarium_sharp;
@@ -77,13 +78,18 @@ class Program
         while (true)
         {
 
-            //addEnvironment(screen);
+            addEnvironment(screen);
             //add_castle(screen);
             //add_all_seaweed(screen);
             //add_all_fish(screen);
             addRandomOject(random_objects,screen);
             screen.redraw();
-
+            
+            Console.WriteLine(WaterAscii.WATER_LINE_SEGMENT[0]);
+            Console.WriteLine(WaterAscii.WATER_LINE_SEGMENT[1]);
+            Console.WriteLine(WaterAscii.WATER_LINE_SEGMENT[2]);
+            Console.WriteLine(WaterAscii.WATER_LINE_SEGMENT[3]);
+            
             int nexttime = 0;
 
             while (true)
@@ -105,8 +111,36 @@ class Program
 
                 //screen.animate() if !paused
             }
+
+            screen.removeAllEntities();
         }
-        Console.WriteLine(FishAscii.FISH1);
+        Console.WriteLine(WaterAscii.WATER_LINE_SEGMENT[0]);
+    }
+
+    private static void addEnvironment(Screen screen)
+    {
+        var segmentLength = WaterAscii.WATER_LINE_SEGMENT[0].Length;
+        var segmentRepeat = (Console.WindowWidth / segmentLength); //in perl version 1 is being padded to the repeat
+        Console.WriteLine(Console.WindowWidth);
+        for (int x = 0; x < WaterAscii.WATER_LINE_SEGMENT.Length;x++ )
+        {
+            var unModifiedLine = WaterAscii.WATER_LINE_SEGMENT[x];
+            for (int r = segmentRepeat; r > 1; r--)
+            {
+                WaterAscii.WATER_LINE_SEGMENT[x] += unModifiedLine;
+            }
+        }
+
+        Entity ent = new Entity();
+        int i = 0; //temporary until I figure out what the foreach is cycling through
+        ent.Name = "water_seg_" + i;
+        ent.Type = AquariumObjectTypes.WaterLine;
+        ent.Shape = WaterAscii.WATER_LINE_SEGMENT[i];//this is an array I think
+        ent.Position = "[0,i+5,depth(\"water_line\" . i)]"; //something like this is used for setting the position
+        ent.DefaultColor = Color.Cyan;
+        ent.Depth = 22;
+        ent.Physical = 1;
+
     }
 
     private static void addRandomOject(List<AquariumObjectTypes> random_objects, Screen screen)

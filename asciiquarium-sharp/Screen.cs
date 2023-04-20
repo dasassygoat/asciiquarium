@@ -64,5 +64,10 @@ namespace asciiquarium_sharp
         public void updateObjects(List<AquariumObjectTypes> aquariumObjectTypes) {
             this.aquariumObjectTypes = aquariumObjectTypes;
 	    }
+
+        public void removeAllEntities()
+        {
+            aquariumObjectTypes = null;
+        }
     }
 }

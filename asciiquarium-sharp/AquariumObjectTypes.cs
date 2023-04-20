@@ -7,7 +7,8 @@ namespace asciiquarium_sharp
 		Whale,
 		Monster,
 		BigFish,
-		Shark
+		Shark,
+		WaterLine
 	}
 
 	
