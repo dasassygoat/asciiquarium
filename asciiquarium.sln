@@ -5,6 +5,8 @@ VisualStudioVersion = 25.0.1705.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "asciiquarium-sharp", "asciiquarium-sharp\asciiquarium-sharp.csproj", "{BCECFBD8-BBB6-4D91-B41C-057ACA5C2580}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "asciiquarium-sharp.tests", "asciiquarium-sharp.tests\asciiquarium-sharp.tests.csproj", "{60E31EAD-B2DB-498C-A40B-2FA0CF43E667}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{BCECFBD8-BBB6-4D91-B41C-057ACA5C2580}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCECFBD8-BBB6-4D91-B41C-057ACA5C2580}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCECFBD8-BBB6-4D91-B41C-057ACA5C2580}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60E31EAD-B2DB-498C-A40B-2FA0CF43E667}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60E31EAD-B2DB-498C-A40B-2FA0CF43E667}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60E31EAD-B2DB-498C-A40B-2FA0CF43E667}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60E31EAD-B2DB-498C-A40B-2FA0CF43E667}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
