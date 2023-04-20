@@ -61,7 +61,7 @@ class Program
 
         Screen screen = new Screen();
         if(args.Any())
-            opt_c = getopts(args, 'c');
+            opt_c = getopts(args, 'C');
 
         if (opt_c)
         { //'classic; mode
@@ -115,7 +115,7 @@ class Program
     {
         foreach (var i in args[0])
         {
-            if (i == v) { return true; }
+            if (char.ToUpper(i) == v) { return true; }
         }
 
         return false;
