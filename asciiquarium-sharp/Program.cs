@@ -71,17 +71,17 @@ class Program
 
         var random_objects = initRandomObjects();
 
-        var depth = new ZDepth(0,1,2,3,20,21,22,new WaterLine(2,3));
+        var depth = new ZDepth(0,1,2,3,20,21,22,new WaterLine(2,3),new WaterLine(4,5), new WaterLine(6,7), new WaterLine(8,9));
         
 
-        while (false)
+        while (true)
         {
 
-            //add_environment(screen);
+            //addEnvironment(screen);
             //add_castle(screen);
             //add_all_seaweed(screen);
             //add_all_fish(screen);
-            //random_object(null,screen);
+            addRandomOject(random_objects,screen);
             screen.redraw();
 
             int nexttime = 0;
@@ -109,9 +109,24 @@ class Program
         Console.WriteLine(FishAscii.FISH1);
     }
 
-    private static object initRandomObjects()
+    private static void addRandomOject(List<AquariumObjectTypes> random_objects, Screen screen)
     {
-        return "HELLO";
+        //todo: not currently random addition
+        random_objects.Add(AquariumObjectTypes.BigFish);
+        screen.updateObjects(random_objects);
+    }
+
+    private static List<AquariumObjectTypes> initRandomObjects()
+    {
+        var randomListOfObjects = new List<AquariumObjectTypes>
+        {
+            AquariumObjectTypes.Ship,
+            AquariumObjectTypes.Whale,
+            AquariumObjectTypes.Monster,
+            AquariumObjectTypes.BigFish,
+            AquariumObjectTypes.Shark
+        };
+        return randomListOfObjects;
     }
 
     private static bool getopts(string[] args, char v)

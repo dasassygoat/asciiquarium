@@ -45,11 +45,24 @@
 
 namespace asciiquarium_sharp
 {
-    internal class Screen
+    public class Screen
     {
-        internal void redraw()
+        private List<AquariumObjectTypes> aquariumObjectTypes;
+
+        public Screen() {
+            this.aquariumObjectTypes = new List<AquariumObjectTypes>();
+	    }
+         public Screen(List<AquariumObjectTypes> aquariumObjectTypes){
+            this.aquariumObjectTypes = aquariumObjectTypes;
+         }
+
+        public void redraw()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Redraw," + aquariumObjectTypes.Any());
         }
+
+        public void updateObjects(List<AquariumObjectTypes> aquariumObjectTypes) {
+            this.aquariumObjectTypes = aquariumObjectTypes;
+	    }
     }
 }
