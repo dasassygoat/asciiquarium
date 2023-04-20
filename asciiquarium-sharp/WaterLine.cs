@@ -5,6 +5,12 @@ namespace asciiquarium_sharp
 	{
 		int WaterLineZ { get; set; }
 		int WaterLineGap { get; set; }
+
+		public WaterLine(int WaterLineZ, int WaterLineGap) {
+			this.WaterLineZ = WaterLineZ;
+			this.WaterLineGap = WaterLineGap;
+	
+		}
 		
 	}
 }

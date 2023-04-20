@@ -71,6 +71,9 @@ class Program
 
         var random_objects = initRandomObjects();
 
+        var depth = new ZDepth(0,1,2,3,20,21,22,new WaterLine(2,3));
+        
+
         while (false)
         {
 
