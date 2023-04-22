@@ -11,4 +11,8 @@ public class Entity
     public Color DefaultColor { get; set; }
     public int Depth { get; set; }
     public int Physical { get; set; }
+    public string? Color { get; set; }
+    public int[]? CallbackArgs { get; set; }
+    public TimeSpan? DieTime { get; set; }
+    public string? DeathCb {get;set;}
 }

@@ -43,6 +43,7 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ############################################################################ */
 
+using System;
 using System.Drawing;
 using asciiquarium_sharp.ascii_art;
 
@@ -79,9 +80,9 @@ class Program
         {
 
             addEnvironment(screen);
-            //add_castle(screen);
-            //add_all_seaweed(screen);
-            //add_all_fish(screen);
+            addCastle(screen);
+            addAllSeaweed(screen);
+            addAllFish(screen);
             addRandomOject(random_objects,screen);
             screen.redraw();
             
@@ -115,6 +116,95 @@ class Program
             screen.removeAllEntities();
         }
         Console.WriteLine(WaterAscii.WATER_LINE_SEGMENT[0]);
+    }
+
+    private static void addAllFish(Screen screen)
+    {
+//figure out how many fish to add by the size of the screen,
+//minus the stuff above the water
+        var  screenSize = (Console.WindowHeight - 9) * Console.WindowWidth;
+        var fishCount = screenSize / 350;
+        for (int x = 1; x <=fishCount;x++)
+        {
+            addFish();
+        }
+    }
+
+    private static void addFish()
+    {
+        Random rnd = new Random();
+        if (new_fish) {
+            if (rnd.Next(12) > 8)
+            {
+                addNewFish();
+            }
+            else {
+                addOldFish();
+	        }
+	    }
+        else {
+            addOldFish();
+	    }
+    }
+
+    private static void addOldFish()
+    {
+        throw new NotImplementedException();
+    }
+
+    private static void addNewFish()
+    {
+        throw new NotImplementedException();
+    }
+
+    private static void addAllSeaweed(Screen screen)
+    {
+        //figure out how many seaweed to add by the width of the screen
+        var seaweedCount = Console.WindowWidth / 15;
+
+        for (int x = 1; x < seaweedCount; x++)
+        {
+            addSeaweed();
+        }
+    }
+
+    private static void addSeaweed()
+    {
+        Random rnd = new Random(); ;
+        var seaweedImage = "('','')"; //may want to move it to a file under ascii_art folder
+        var height = rnd.Next(4) + 3;
+        for(int x =1; x <= height; x++) {
+            var leftSide = x % 2;
+            var rightSide = !leftSide;
+            seaweedImage[leftSide].= "(\n";
+            seaweedImage[rightSide].= " )\n";
+
+	    }
+
+        int x = rnd.Next(Console.WindowWidth - 2) + 1;
+        int y = Console.WindowHeight - height;
+        Random randomSpeed = new Random();
+        int animationSpeed = randomSpeed.Next(.05) + .25;
+        Entity seaweedEntity = new Entity();
+        seaweedEntity.Name = "seaweed" + rnd.Next(1);
+        seaweedEntity.Shape = seaweedImage;
+        seaweedEntity.Position = "[x,y,depth('seaweed')]";
+        seaweedEntity.CallbackArgs = [0, 0, 0, animationSpeed];
+        seaweedEntity.DieTime = rnd.Next(4 * 60) + (8 * 60); //seaweed lives for 8 to 12 minutes
+        seaweedEntity.DeathCb = "add_seaweed";
+        seaweedEntity.DefaultColor = Color.Green;
+
+    }
+
+
+    private static void addCastle(Screen screen)
+    {
+        Entity ent = new Entity();
+        ent.Name = "catle";
+        ent.Shape = CastleAscii.CASTLE_IMAGE;
+        ent.Color = CastleAscii.CASTLE_MASK;
+        ent.Position = "width -32, height - 13, depth('castle')";
+        ent.DefaultColor = Color.Black;
     }
 
     private static void addEnvironment(Screen screen)
