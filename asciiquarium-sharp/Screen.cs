@@ -58,7 +58,7 @@ namespace asciiquarium_sharp
 
         public void redraw()
         {
-            Console.WriteLine("Redraw," + aquariumObjectTypes.Any());
+            //Console.WriteLine("Redraw," + aquariumObjectTypes.Any());
         }
 
         public void updateObjects(List<AquariumObjectTypes> aquariumObjectTypes) {

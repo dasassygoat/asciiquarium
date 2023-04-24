@@ -149,12 +149,12 @@ class Program
 
     private static void addOldFish()
     {
-        throw new NotImplementedException();
+        
     }
 
     private static void addNewFish()
     {
-        throw new NotImplementedException();
+        
     }
 
     private static void addAllSeaweed(Screen screen)
@@ -171,7 +171,7 @@ class Program
     private static void addSeaweed()
     {
         Random rnd = new Random(); ;
-        string[] seaweedImage = new string[]{"(''","'')"}; //may want to move it to a file under ascii_art folder
+        string[] seaweedImage = new string[]{"( \n"," )\n"}; //may want to move it to a file under ascii_art folder
         var height = rnd.Next(4) + 3;
         
         for(int x =1; x <= height; x++) {
@@ -196,6 +196,9 @@ class Program
         //seaweedEntity.DieTime = rnd.Next(4 * 60) + (8 * 60); //seaweed lives for 8 to 12 minutes
         seaweedEntity.DeathCb = "add_seaweed";
         seaweedEntity.DefaultColor = Color.Green;
+        Console.WriteLine(seaweedImage[0]);
+        Console.WriteLine($"\n{seaweedEntity.Name}\n");
+        Console.WriteLine(seaweedImage[1]);
 
     }
 
