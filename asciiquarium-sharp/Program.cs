@@ -56,7 +56,7 @@ class Program
     {
         bool optC = false;
         bool newFish = true;
-        int newMonster = 1;
+        bool newMonster = true;
 
         var startTime = DateTime.Now;
         bool paused = false;
@@ -68,7 +68,7 @@ class Program
         if (optC)
         { //'classic; mode
             newFish = false;
-            newMonster = 0;
+            newMonster = false;
         }
 
         var randomObjects = initRandomObjects();
