@@ -55,7 +55,7 @@ class Program
     static void Main(string[] args)
     {
         bool opt_c = false;
-        int new_fish = 1;
+        bool new_fish = true;
         int new_monster = 1;
 
         var start_time = DateTime.Now;
@@ -67,7 +67,7 @@ class Program
 
         if (opt_c)
         { //'classic; mode
-            new_fish = 0;
+            new_fish = false;
             new_monster = 0;
         }
 
@@ -82,7 +82,7 @@ class Program
             addEnvironment(screen);
             addCastle(screen);
             addAllSeaweed(screen);
-            addAllFish(screen);
+            addAllFish(screen, new_fish);
             addRandomOject(random_objects,screen);
             screen.redraw();
             
@@ -118,7 +118,7 @@ class Program
         Console.WriteLine(WaterAscii.WATER_LINE_SEGMENT[0]);
     }
 
-    private static void addAllFish(Screen screen)
+    private static void addAllFish(Screen screen, bool new_fish)
     {
 //figure out how many fish to add by the size of the screen,
 //minus the stuff above the water
@@ -126,11 +126,11 @@ class Program
         var fishCount = screenSize / 350;
         for (int x = 1; x <=fishCount;x++)
         {
-            addFish();
+            addFish(new_fish);
         }
     }
 
-    private static void addFish()
+    private static void addFish(bool new_fish)
     {
         Random rnd = new Random();
         if (new_fish) {
