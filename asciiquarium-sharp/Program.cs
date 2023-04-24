@@ -54,24 +54,24 @@ class Program
 
     static void Main(string[] args)
     {
-        bool opt_c = false;
-        bool new_fish = true;
-        int new_monster = 1;
+        bool optC = false;
+        bool newFish = true;
+        int newMonster = 1;
 
-        var start_time = DateTime.Now;
+        var startTime = DateTime.Now;
         bool paused = false;
 
         Screen screen = new Screen();
         if(args.Any())
-            opt_c = getopts(args, 'C');
+            optC = getopts(args, 'C');
 
-        if (opt_c)
+        if (optC)
         { //'classic; mode
-            new_fish = false;
-            new_monster = 0;
+            newFish = false;
+            newMonster = 0;
         }
 
-        var random_objects = initRandomObjects();
+        var randomObjects = initRandomObjects();
 
         var depth = new ZDepth(0,1,2,3,20,21,22,new WaterLine(2,3),new WaterLine(4,5), new WaterLine(6,7), new WaterLine(8,9));
         
@@ -82,8 +82,8 @@ class Program
             addEnvironment(screen);
             addCastle(screen);
             addAllSeaweed(screen);
-            addAllFish(screen, new_fish);
-            addRandomOject(random_objects,screen);
+            addAllFish(screen, newFish);
+            addRandomOject(randomObjects,screen);
             screen.redraw();
             
             Console.WriteLine(WaterAscii.WATER_LINE_SEGMENT[0]);
@@ -181,10 +181,10 @@ class Program
 
 	    }
 
-        int x = rnd.Next(Console.WindowWidth - 2) + 1;
-        int y = Console.WindowHeight - height;
+        int randomX = rnd.Next(Console.WindowWidth - 2) + 1;
+        int randomY = Console.WindowHeight - height;
         Random randomSpeed = new Random();
-        int animationSpeed = randomSpeed.Next(.05) + .25;
+        double animationSpeed = (randomSpeed.Next(5) + .25)/100;
         Entity seaweedEntity = new Entity();
         seaweedEntity.Name = "seaweed" + rnd.Next(1);
         seaweedEntity.Shape = seaweedImage;
