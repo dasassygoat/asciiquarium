@@ -171,13 +171,16 @@ class Program
     private static void addSeaweed()
     {
         Random rnd = new Random(); ;
-        var seaweedImage = "('','')"; //may want to move it to a file under ascii_art folder
+        string[] seaweedImage = new string[]{"(''","'')"}; //may want to move it to a file under ascii_art folder
         var height = rnd.Next(4) + 3;
+        
         for(int x =1; x <= height; x++) {
-            var leftSide = x % 2;
-            var rightSide = !leftSide;
-            seaweedImage[leftSide].= "(\n";
-            seaweedImage[rightSide].= " )\n";
+            bool leftSide, rightSide;
+            leftSide = Convert.ToBoolean(x % 2);
+            rightSide = !leftSide;
+            
+            seaweedImage[leftSide?1:0] += "(\n"; //string concat
+            seaweedImage[rightSide?1:0] += " )\n"; //string concat
 
 	    }
 
@@ -187,10 +190,10 @@ class Program
         double animationSpeed = (randomSpeed.Next(5) + .25)/100;
         Entity seaweedEntity = new Entity();
         seaweedEntity.Name = "seaweed" + rnd.Next(1);
-        seaweedEntity.Shape = seaweedImage;
+        //seaweedEntity.Shape = seaweedImage;
         seaweedEntity.Position = "[x,y,depth('seaweed')]";
-        seaweedEntity.CallbackArgs = [0, 0, 0, animationSpeed];
-        seaweedEntity.DieTime = rnd.Next(4 * 60) + (8 * 60); //seaweed lives for 8 to 12 minutes
+        //seaweedEntity.CallbackArgs = [0, 0, 0, animationSpeed];
+        //seaweedEntity.DieTime = rnd.Next(4 * 60) + (8 * 60); //seaweed lives for 8 to 12 minutes
         seaweedEntity.DeathCb = "add_seaweed";
         seaweedEntity.DefaultColor = Color.Green;
 
