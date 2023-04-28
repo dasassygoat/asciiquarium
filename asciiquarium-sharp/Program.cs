@@ -76,7 +76,7 @@ class Program
             newMonster = false;
         }
 
-        var randomObjects = initRandomObjects();
+        var randomObjects = InitRandomObjects();
 
         var depth = new ZDepth(0,1,2,3,20,21,22,new WaterLine(2,3),new WaterLine(4,5), new WaterLine(6,7), new WaterLine(8,9));
 
@@ -294,7 +294,7 @@ class Program
         screen.UpdateObjects(random_objects);
     }
 
-    private static List<AquariumObjectTypes> initRandomObjects()
+    private static List<AquariumObjectTypes> InitRandomObjects()
     {
         var randomListOfObjects = new List<AquariumObjectTypes>
         {
