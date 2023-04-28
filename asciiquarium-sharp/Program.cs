@@ -138,11 +138,14 @@ class Program
     private static void DisplayCursorPositionSomewhereElse()
     {
         Console.SetCursorPosition(5, 5);
+        Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("RED ROSE");
+        Console.ForegroundColor = ConsoleColor.DarkMagenta;
         Console.WriteLine("Purple Petals");
         var pos = Console.GetCursorPosition();
         Console.WriteLine(pos);
         Thread.Sleep(10000);
+        Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine("Orange Orangutan");
         pos = Console.GetCursorPosition();
         Console.WriteLine(pos);
@@ -151,6 +154,7 @@ class Program
         var centerWidth = Console.WindowWidth/2;
         var centerHeight = Console.WindowHeight/2;
         Console.SetCursorPosition(centerWidth, centerHeight);
+        Console.ForegroundColor = ConsoleColor.Blue;
         Console.WriteLine("blue bonnets");
         pos = Console.GetCursorPosition();
         Console.WriteLine(pos);
