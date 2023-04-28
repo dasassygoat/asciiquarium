@@ -54,6 +54,9 @@ class Program
 
     static void Main(string[] args)
     {
+        //Console.Clear();
+        DisplayCursorPositionSomewhereElse();
+
         bool optC = false;
         bool newFish = true;
         bool newMonster = true;
@@ -74,9 +77,9 @@ class Program
         var randomObjects = initRandomObjects();
 
         var depth = new ZDepth(0,1,2,3,20,21,22,new WaterLine(2,3),new WaterLine(4,5), new WaterLine(6,7), new WaterLine(8,9));
-        
 
-        while (true)
+        bool run = false;
+        while (run)
         {
 
             addEnvironment(screen);
@@ -114,8 +117,18 @@ class Program
             }
 
             screen.removeAllEntities();
+            break;
         }
-        Console.WriteLine(WaterAscii.WATER_LINE_SEGMENT[0]);
+        
+    }
+
+    private static void DisplayCursorPositionSomewhereElse()
+    {
+        Console.SetCursorPosition(5, 5);
+        Console.Write("RED ROSE");
+
+        var pos = Console.GetCursorPosition();
+        Console.WriteLine(pos);
     }
 
     private static void addAllFish(Screen screen, bool new_fish)
