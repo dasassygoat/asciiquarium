@@ -57,6 +57,8 @@ class Program
         //Console.Clear();
         DisplayCursorPositionSomewhereElse();
 
+        DisplayZero();
+
         bool optC = false;
         bool newFish = true;
         bool newMonster = true;
@@ -122,12 +124,35 @@ class Program
         
     }
 
+    private static void DisplayZero()
+    {
+        var consoleWidth = Console.WindowWidth;
+        var consoleHeight = Console.WindowHeight;
+        var title = "Welcome";
+        Console.SetCursorPosition((consoleWidth/2) - title.Length/2, (consoleHeight /2));
+        Console.Write(title);
+        var pos = Console.GetCursorPosition();
+        Console.WriteLine($" {pos}\n");
+    }
+
     private static void DisplayCursorPositionSomewhereElse()
     {
         Console.SetCursorPosition(5, 5);
-        Console.Write("RED ROSE");
-
+        Console.WriteLine("RED ROSE");
+        Console.WriteLine("Purple Petals");
         var pos = Console.GetCursorPosition();
+        Console.WriteLine(pos);
+        Thread.Sleep(10000);
+        Console.WriteLine("Orange Orangutan");
+        pos = Console.GetCursorPosition();
+        Console.WriteLine(pos);
+        Thread.Sleep(5000);
+        Console.Clear();
+        var centerWidth = Console.WindowWidth/2;
+        var centerHeight = Console.WindowHeight/2;
+        Console.SetCursorPosition(centerWidth, centerHeight);
+        Console.WriteLine("blue bonnets");
+        pos = Console.GetCursorPosition();
         Console.WriteLine(pos);
     }
 
