@@ -68,7 +68,7 @@ class Program
 
         Screen screen = new Screen();
         if(args.Any())
-            optC = getopts(args, 'C');
+            optC = Getopts(args, 'C');
 
         if (optC)
         { //'classic; mode
@@ -84,12 +84,12 @@ class Program
         while (run)
         {
 
-            addEnvironment(screen);
-            addCastle(screen);
-            addAllSeaweed(screen);
-            addAllFish(screen, newFish);
-            addRandomOject(randomObjects,screen);
-            screen.redraw();
+            AddEnvironment(screen);
+            AddCastle(screen);
+            AddAllSeaweed(screen);
+            AddAllFish(screen, newFish);
+            AddRandomOject(randomObjects,screen);
+            screen.Redraw();
             
             Console.WriteLine(WaterAscii.WATER_LINE_SEGMENT[0]);
             Console.WriteLine(WaterAscii.WATER_LINE_SEGMENT[1]);
@@ -108,7 +108,7 @@ class Program
                 }
                 else if (input == 'r')
                 {
-                    screen.redraw();
+                    screen.Redraw();
                 }
                 else if (input == 'p')
                 {
@@ -118,10 +118,16 @@ class Program
                 //screen.animate() if !paused
             }
 
-            screen.removeAllEntities();
+            screen.RemoveAllEntities();
             break;
         }
-        
+
+        CleanupScreen();
+    }
+
+    private static void CleanupScreen()
+    {
+        Console.ResetColor();
     }
 
     private static void DisplayZero()
@@ -160,7 +166,7 @@ class Program
         Console.WriteLine(pos);
     }
 
-    private static void addAllFish(Screen screen, bool new_fish)
+    private static void AddAllFish(Screen screen, bool NewFish)
     {
 //figure out how many fish to add by the size of the screen,
 //minus the stuff above the water
@@ -168,49 +174,49 @@ class Program
         var fishCount = screenSize / 350;
         for (int x = 1; x <=fishCount;x++)
         {
-            addFish(new_fish);
+            AddFish(NewFish);
         }
     }
 
-    private static void addFish(bool new_fish)
+    private static void AddFish(bool new_fish)
     {
         Random rnd = new Random();
         if (new_fish) {
             if (rnd.Next(12) > 8)
             {
-                addNewFish();
+                AddNewFish();
             }
             else {
-                addOldFish();
+                AddOldFish();
 	        }
 	    }
         else {
-            addOldFish();
+            AddOldFish();
 	    }
     }
 
-    private static void addOldFish()
+    private static void AddOldFish()
     {
         
     }
 
-    private static void addNewFish()
+    private static void AddNewFish()
     {
         
     }
 
-    private static void addAllSeaweed(Screen screen)
+    private static void AddAllSeaweed(Screen screen)
     {
         //figure out how many seaweed to add by the width of the screen
         var seaweedCount = Console.WindowWidth / 15;
 
         for (int x = 1; x < seaweedCount; x++)
         {
-            addSeaweed();
+            AddSeaweed();
         }
     }
 
-    private static void addSeaweed()
+    private static void AddSeaweed()
     {
         Random rnd = new Random(); ;
         string[] seaweedImage = new string[]{"( \n"," )\n"}; //may want to move it to a file under ascii_art folder
@@ -245,7 +251,7 @@ class Program
     }
 
 
-    private static void addCastle(Screen screen)
+    private static void AddCastle(Screen screen)
     {
         Entity ent = new Entity();
         ent.Name = "catle";
@@ -255,7 +261,7 @@ class Program
         ent.DefaultColor = Color.Black;
     }
 
-    private static void addEnvironment(Screen screen)
+    private static void AddEnvironment(Screen screen)
     {
         var segmentLength = WaterAscii.WATER_LINE_SEGMENT[0].Length;
         var segmentRepeat = (Console.WindowWidth / segmentLength); //in perl version 1 is being padded to the repeat
@@ -281,11 +287,11 @@ class Program
 
     }
 
-    private static void addRandomOject(List<AquariumObjectTypes> random_objects, Screen screen)
+    private static void AddRandomOject(List<AquariumObjectTypes> random_objects, Screen screen)
     {
         //todo: not currently random addition
         random_objects.Add(AquariumObjectTypes.BigFish);
-        screen.updateObjects(random_objects);
+        screen.UpdateObjects(random_objects);
     }
 
     private static List<AquariumObjectTypes> initRandomObjects()
@@ -301,7 +307,7 @@ class Program
         return randomListOfObjects;
     }
 
-    private static bool getopts(string[] args, char v)
+    private static bool Getopts(string[] args, char v)
     {
         foreach (var i in args[0])
         {

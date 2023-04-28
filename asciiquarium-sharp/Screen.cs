@@ -56,16 +56,16 @@ namespace asciiquarium_sharp
             this.aquariumObjectTypes = aquariumObjectTypes;
          }
 
-        public void redraw()
+        public void Redraw()
         {
             //Console.WriteLine("Redraw," + aquariumObjectTypes.Any());
         }
 
-        public void updateObjects(List<AquariumObjectTypes> aquariumObjectTypes) {
+        public void UpdateObjects(List<AquariumObjectTypes> aquariumObjectTypes) {
             this.aquariumObjectTypes = aquariumObjectTypes;
 	    }
 
-        public void removeAllEntities()
+        public void RemoveAllEntities()
         {
             aquariumObjectTypes = null;
         }
