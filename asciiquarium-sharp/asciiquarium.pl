@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env perl
+#!/usr/bin/env perl
 #
 #############################################################################
 # Asciiquarium - An aquarium animation in ASCII art
