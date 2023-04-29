@@ -54,10 +54,9 @@ class Program
 
     static void Main(string[] args)
     {
-        //Console.Clear();
-        DisplayCursorPositionSomewhereElse();
-
-        DisplayZero();
+        Console.Clear();
+        //DisplayCursorPositionSomewhereElse();
+        //DisplayZero();
 
         bool optC = false;
         bool newFish = true;
@@ -80,7 +79,7 @@ class Program
 
         var depth = new ZDepth(0,1,2,3,20,21,22,new WaterLine(2,3),new WaterLine(4,5), new WaterLine(6,7), new WaterLine(8,9));
 
-        bool run = false;
+        bool run = true;
         while (run)
         {
 
@@ -89,13 +88,9 @@ class Program
             AddAllSeaweed(screen);
             AddAllFish(screen, newFish);
             AddRandomOject(randomObjects,screen);
-            screen.Redraw();
-            
-            Console.WriteLine(WaterAscii.WATER_LINE_SEGMENT[0]);
-            Console.WriteLine(WaterAscii.WATER_LINE_SEGMENT[1]);
-            Console.WriteLine(WaterAscii.WATER_LINE_SEGMENT[2]);
-            Console.WriteLine(WaterAscii.WATER_LINE_SEGMENT[3]);
-            
+            //screen.Redraw();
+            DisplayWaterLevel();
+
             int nexttime = 0;
 
             while (true)
@@ -123,6 +118,15 @@ class Program
         }
 
         CleanupScreen();
+    }
+
+    private static void DisplayWaterLevel()
+    {
+        Console.SetCursorPosition(0, 4);
+        Console.WriteLine(WaterAscii.WATER_LINE_SEGMENT[0]);
+        Console.WriteLine(WaterAscii.WATER_LINE_SEGMENT[1]);
+        Console.WriteLine(WaterAscii.WATER_LINE_SEGMENT[2]);
+        Console.WriteLine(WaterAscii.WATER_LINE_SEGMENT[3]);
     }
 
     private static void CleanupScreen()
@@ -244,9 +248,9 @@ class Program
         //seaweedEntity.DieTime = rnd.Next(4 * 60) + (8 * 60); //seaweed lives for 8 to 12 minutes
         seaweedEntity.DeathCb = "add_seaweed";
         seaweedEntity.DefaultColor = Color.Green;
-        Console.WriteLine(seaweedImage[0]);
-        Console.WriteLine($"\n{seaweedEntity.Name}\n");
-        Console.WriteLine(seaweedImage[1]);
+        // Console.WriteLine(seaweedImage[0]);
+        // Console.WriteLine($"\n{seaweedEntity.Name}\n");
+        // Console.WriteLine(seaweedImage[1]);
 
     }
 
@@ -265,7 +269,7 @@ class Program
     {
         var segmentLength = WaterAscii.WATER_LINE_SEGMENT[0].Length;
         var segmentRepeat = (Console.WindowWidth / segmentLength); //in perl version 1 is being padded to the repeat
-        Console.WriteLine(Console.WindowWidth);
+        //Console.WriteLine(Console.WindowWidth);
         for (int x = 0; x < WaterAscii.WATER_LINE_SEGMENT.Length;x++ )
         {
             var unModifiedLine = WaterAscii.WATER_LINE_SEGMENT[x];
