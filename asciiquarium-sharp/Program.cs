@@ -123,6 +123,7 @@ class Program
     private static void DisplayWaterLevel()
     {
         Console.SetCursorPosition(0, 4);
+        Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine(WaterAscii.WATER_LINE_SEGMENT[0]);
         Console.WriteLine(WaterAscii.WATER_LINE_SEGMENT[1]);
         Console.WriteLine(WaterAscii.WATER_LINE_SEGMENT[2]);
