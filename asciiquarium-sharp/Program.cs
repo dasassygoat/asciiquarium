@@ -51,10 +51,13 @@ namespace asciiquarium_sharp;
 class Program
 {
     string version = "1.1";
+    static int consoleWidth = Console.WindowWidth;
+    static int consoleHeight = Console.WindowHeight;
 
     static void Main(string[] args)
     {
         Console.Clear();
+        
         //DisplayCursorPositionSomewhereElse();
         //DisplayZero();
 
@@ -65,9 +68,9 @@ class Program
         var startTime = DateTime.Now;
         bool paused = false;
 
-        Screen screen = new Screen();
+        Screen screen = new Screen(consoleWidth,consoleHeight);
         if(args.Any())
-            optC = Getopts(args, 'C');
+            optC = GetOpts(args, 'C');
 
         if (optC)
         { //'classic; mode
@@ -91,7 +94,7 @@ class Program
             //screen.Redraw();
             DisplayWaterLevel();
 
-            int nexttime = 0;
+            int nextTime = 0;
 
             while (true)
             {
@@ -173,8 +176,8 @@ class Program
 
     private static void AddAllFish(Screen screen, bool NewFish)
     {
-//figure out how many fish to add by the size of the screen,
-//minus the stuff above the water
+        //figure out how many fish to add by the size of the screen,
+        //minus the stuff above the water
         var  screenSize = (Console.WindowHeight - 9) * Console.WindowWidth;
         var fishCount = screenSize / 350;
         for (int x = 1; x <=fishCount;x++)
@@ -312,7 +315,7 @@ class Program
         return randomListOfObjects;
     }
 
-    private static bool Getopts(string[] args, char v)
+    private static bool GetOpts(string[] args, char v)
     {
         foreach (var i in args[0])
         {

@@ -48,12 +48,22 @@ namespace asciiquarium_sharp
     public class Screen
     {
         private List<AquariumObjectTypes> aquariumObjectTypes;
+        
 
-        public Screen() {
+        private int Width { get; set; }
+        private int Height { get; set; }
+
+        public Screen(int width, int height)
+        {
+            Width = width;
+            Height = height;
             this.aquariumObjectTypes = new List<AquariumObjectTypes>();
 	    }
-         public Screen(List<AquariumObjectTypes> aquariumObjectTypes){
-            this.aquariumObjectTypes = aquariumObjectTypes;
+         public Screen(int width, int height, List<AquariumObjectTypes> aquariumObjectTypes)
+         {
+             Width = width;
+             Height = height;
+             this.aquariumObjectTypes = aquariumObjectTypes;
          }
 
         public void Redraw()
