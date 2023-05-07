@@ -1,4 +1,5 @@
-﻿/*#############################################################################
+﻿#region License
+/*#############################################################################
 # Asciiquarium - An aquarium animation in ASCII art
 #
 # This program displays an aquarium/sea animation using ASCII art.
@@ -42,28 +43,29 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ############################################################################ */
+#endregion
 
-using System;
 using System.Drawing;
 using asciiquarium_sharp.ascii_art;
-using System.Runtime.InteropServices;
 
 namespace asciiquarium_sharp;
 class Program
 {
-    
-    string version = "1.1";
     static int consoleWidth = Console.WindowWidth;
     static int consoleHeight = Console.WindowHeight;
+    
+    private const string title = "Asciiquarium";
+    private const string version = "1.1";
 
     static void Main(string[] args)
     {
         Console.Clear();
+        Console.CursorVisible = false;
+        Console.Title = title;
         
         //DisplayCursorPositionSomewhereElse();
         //DisplayZero();
-        
-        
+
         bool optC = false;
         bool newFish = true;
         bool newMonster = true;
