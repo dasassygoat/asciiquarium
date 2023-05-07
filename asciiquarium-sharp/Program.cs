@@ -51,12 +51,6 @@ using System.Runtime.InteropServices;
 namespace asciiquarium_sharp;
 class Program
 {
-    [DllImport("kernel32.dll", EntryPoint = "GetConsoleWindow", SetLastError = true)]
-    private static extern IntPtr GetConsoleHandle();
-
-
-    [DllImport("user32.dll")]
-    private static extern int GetWindowRect(IntPtr hwnd, out Rectangle rect);
     
     string version = "1.1";
     static int consoleWidth = Console.WindowWidth;
@@ -69,9 +63,7 @@ class Program
         //DisplayCursorPositionSomewhereElse();
         //DisplayZero();
         
-        ShouldDrawLineToConsole();
-
-
+        
         bool optC = false;
         bool newFish = true;
         bool newMonster = true;
@@ -134,33 +126,7 @@ class Program
         CleanupScreen();
     }
 
-    private static void ShouldDrawLineToConsole()
-    {
-        IntPtr handle = GetConsoleHandle();
-        Rectangle rect;
-        GetWindowRect(handle, out rect);
-
-        int width = rect.Width;
-        int height = rect.Height;
-
-        using (var gfx = Graphics.FromHwnd(handle))
-        {
-            gfx.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            //gfx.FillRectangle(Brushes.Black, 0, 0, width, height);
-            gfx.Clear(Color.Navy);
-
-            Random rand = new Random(0);
-            Pen pen = new Pen(Color.White);
-            for (int i = 0; i < 1000; i++)
-            {
-                pen.Color = Color.FromArgb(rand.Next());
-                Point pt1 = new Point(rand.Next(width), rand.Next(height));
-                Point pt2 = new Point(rand.Next(width), rand.Next(height));
-                gfx.DrawLine(pen, pt1, pt2);
-            }
-        }
-    }
-
+    
     private static void MoveAccrossTheScreen()
     {
         for(int x = 1; x < consoleWidth-6; x++)
