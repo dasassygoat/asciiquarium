@@ -46,10 +46,18 @@
 using System;
 using System.Drawing;
 using asciiquarium_sharp.ascii_art;
+using System.Runtime.InteropServices;
 
 namespace asciiquarium_sharp;
 class Program
 {
+    [DllImport("kernel32.dll", EntryPoint = "GetConsoleWindow", SetLastError = true)]
+    private static extern IntPtr GetConsoleHandle();
+
+
+    [DllImport("user32.dll")]
+    private static extern int GetWindowRect(IntPtr hwnd, out Rectangle rect);
+    
     string version = "1.1";
     static int consoleWidth = Console.WindowWidth;
     static int consoleHeight = Console.WindowHeight;
@@ -60,6 +68,9 @@ class Program
         
         //DisplayCursorPositionSomewhereElse();
         //DisplayZero();
+        
+        ShouldDrawLineToConsole();
+
 
         bool optC = false;
         bool newFish = true;
@@ -82,10 +93,10 @@ class Program
 
         var depth = new ZDepth(0,1,2,3,20,21,22,new WaterLine(2,3),new WaterLine(4,5), new WaterLine(6,7), new WaterLine(8,9));
 
-        bool run = true;
+        bool run = false;
         while (run)
         {
-
+            
             AddEnvironment(screen);
             AddCastle(screen);
             AddAllSeaweed(screen);
@@ -93,13 +104,13 @@ class Program
             AddRandomOject(randomObjects,screen);
             //screen.Redraw();
             DisplayWaterLevel();
-
+            MoveAccrossTheScreen();
             int nextTime = 0;
 
             while (true)
             {
                 var input = Console.ReadKey().KeyChar;
-
+                
                 if (input == 'q')
                 {
                     break;
@@ -119,10 +130,51 @@ class Program
             screen.RemoveAllEntities();
             break;
         }
-
+        
         CleanupScreen();
     }
 
+    private static void ShouldDrawLineToConsole()
+    {
+        IntPtr handle = GetConsoleHandle();
+        Rectangle rect;
+        GetWindowRect(handle, out rect);
+
+        int width = rect.Width;
+        int height = rect.Height;
+
+        using (var gfx = Graphics.FromHwnd(handle))
+        {
+            gfx.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            //gfx.FillRectangle(Brushes.Black, 0, 0, width, height);
+            gfx.Clear(Color.Navy);
+
+            Random rand = new Random(0);
+            Pen pen = new Pen(Color.White);
+            for (int i = 0; i < 1000; i++)
+            {
+                pen.Color = Color.FromArgb(rand.Next());
+                Point pt1 = new Point(rand.Next(width), rand.Next(height));
+                Point pt2 = new Point(rand.Next(width), rand.Next(height));
+                gfx.DrawLine(pen, pt1, pt2);
+            }
+        }
+    }
+
+    private static void MoveAccrossTheScreen()
+    {
+        for(int x = 1; x < consoleWidth-6; x++)
+        {
+            Console.Clear();
+            Console.SetCursorPosition(x, 1);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("#####");
+            System.Threading.Thread.Sleep(100);
+            
+        }
+        
+    }
+    /// Displays a static four level water level
     private static void DisplayWaterLevel()
     {
         Console.SetCursorPosition(0, 4);
